@@ -68,6 +68,7 @@ p:hover{
 /*Links*/
 a{
     color: darkblue; /*All links will be this color*/
+    cursor: pointer;
 }
 
 /*Quote*/
@@ -185,13 +186,7 @@ footer p{
     z-index: -1; /*Places video behind all other elements*/
 }
 
-/*Rule applied so video will display on smaller screens
-like that of a smartphone*/
-@media screen and (max-width: 576px){
-    #coding_video{
-        display: none;
-    }
-}
+
 
 .vid_text{
     background: rgba(0, 0, 0, 0.5); /*Semi-transparent outline for text*/
@@ -211,6 +206,121 @@ like that of a smartphone*/
 }
 
 /*END OF VIDEO*/
+
+/*SLIDESHOW STYLING*/
+
+/*Slight transparent background behind images*/
+#slideshow_background{
+    background: rgba(255, 255, 255, 0.25)
+}
+
+.mySlides{
+    display: none; /*Prevents images from being diplayed, JS will be used*/
+}
+
+#slideshow_container{
+    width: 39.5vw; /*Relative size of container*/
+    height: auto; /*Auto adjust per image displayed*/
+    padding-top: 4%; /*Adds minor padding to top*/
+    position: relative; /*Sets container relative to normal positioning*/
+    margin: auto; /*Horizontally center container on page*/
+}
+
+#slideshow_container a{
+    text-decoration: none; /*Removes underline on text*/
+}
+
+.slideshow_images{
+    vertical-align: middle; /*Centers images vertically*/
+    height: auto;
+    box-shadow: 0px 5px 10px 12px rgba(0, 0, 0, 0.75); /*Creates a semi transparent shadow around
+    edge of of image border*/
+    width: 100%; /*Width of images is auto adjusted based on content*/
+}
+
+#slideshow_static{
+    transition: none;
+    transform: none;
+}
+
+.Prev, .Next{
+    cursor: pointer;
+    position: absolute; /*Make next/prev button position relative to container*/
+    top: 50%; /*Moves the buttons up in the container*/
+    width: auto; /*Width of buttons are auto adjusted*/
+    padding: 2vw; /*Adds padidng to 2% of veiwport width*/
+    color: darkgray;
+    font-weight: bold;
+    font-size: 1.5vw;
+    border-radius: 0 3px 3px 0; /*Adds a slight rounded edge on the top and bottom right corners*/
+    user-select: none; /*User cannot highlight text*/
+    transition: 0.6s ease; /*Details the hover tansition*/
+}
+
+/*Positions the next button to the right of the image*/
+.Next{
+    right: 0; /*Moves next button to right of container*/
+    border-radius: 3px 0 0 3px; /*Changes the edges of the top and bottom left corners*/
+}
+
+/*Hover effect on slideshow buttons*/
+.Prev:hover, .Next:hover{
+    background-color: rgba(0, 0, 0, 0.8);
+    color: azure; /*Makes arrows azure hwen highlighted*/
+}
+
+/*Slideshow text*/
+.text{
+    color: azure;
+    padding: 1vw;
+    position: absolute; /*Ensure text is positioned within the image*/
+    bottom: 0; /*Property sets text at the bottom of the image*/
+    width: 100%; /*Covers full width of the image*/
+    text-align: center; /*Center aligned within image*/
+    font-family:  "Titillium Web", sans-serif; /*Font from
+    fonts.google.com*/
+    letter-spacing: .1vw; /*Slight spacing between letters*/
+    font-size: 1.5vw; /*Size is relative to size of viewport width*/
+    background-color: rgba(0, 0, 0, 0.75); /*Slight transparent black background*/
+    font-weight: bold;
+    border-radius: 0px 0px 7px 7px; /*Gives text background slightly rounded edges, 
+    bottom left/right*/
+}
+
+/*Styling of dots under slideshow*/
+.dot{
+    cursor: pointer;
+    height: 1vw; /*Dots are sized relative to viewport width*/
+    width: 1vw;
+    margin: .25vw; /*Added spacing between dots*/
+    background-color: azure;
+    border-radius: 50%; /*Makes dots circles by rounding them*/
+    display: inline-block; /*Allows dots to sit next to each other*/
+    transition: background-color 0.6s ease; /*Transitions to diff color when hovered over*/
+    z-index: 1; /*Ensures dots are on top of background elements*/
+}
+
+/*Hover effect for slideshow dots*/
+.active, .dot:hover{
+    background-color: rgb(11, 11, 11);
+}
+
+.fade{
+    animation-name: fade; /*Fade animation defined below*/
+    animation-duration: 2s;
+    -webkit-animation-name: fade; /*Applies same for Safari browsers*/
+    -webkit-animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade{
+    from {opacity: .4;} /*Image starts transparent*/
+    to {opacity: 1;} /*Image ends opaque*/
+}
+
+@keyframes fade{
+    from {opacity: .4;} 
+    to {opacity: 1;}
+}
 
 /*TABLE/COLUMNS*/
 
@@ -245,12 +355,6 @@ like that of a smartphone*/
     background-color: #b53bed;
 }
 
-/*This class applies to the contact form column giving it more room for the inputs*/
-.column_tall{
-    padding-top: 1%; 
-    height: 450px; 
-}
-
 .column_git{
     padding-top: 4%; /*Override to help center the github text*/
 }
@@ -267,50 +371,90 @@ like that of a smartphone*/
 
 /*CONTACT FORM*/
 
-/*input for text in boxes*/
-input[type="text"]{
+/*Button used to open contact form*/
+.pop_up_button{
+    position: fixed; /*Keeps button fixed in same position up and down screen*/
+    bottom: 1.75vw; /*Positions slightly up from bottom of viewport*/
+    right: 1.75vw; /*Positions slightly to right of viewport*/
+    width: 25vw; /*Sets widh relative to viewport width*/
+    background-color: #b53bed;
+    color: rgb(11, 11, 11);
+    border: solid rgb(11, 11, 11);
+    cursor: pointer;
+    -webkit-animation: movePopup 5s; /*For Safari browsers*/
+    animation: movePopup 5s; /*Animation set for 5 seconds*/ 
+}
+
+/*Animation moves button from off the right side of the screen to fixed location on viewport*/
+@keyframes movePopup{
+    from {right: -40vw;}
+    to {right: 1.75vw;}
+}
+
+@-webkit-keyframes movePopup{
+    from {right: -40vw;}
+    to {right: 1.75vw;}
+}
+
+/*Styling for contact form*/
+/*Form element*/
+form{
+    font-family: "Audiowide", sans-serif; /*Font from fonts.google.com*/
+}
+
+.form-popup{
+    z-index: 8; /*Ensure contact form will saty atop all oither elements*/
+    display: none; /*JS will be used to display the form*/
+    position: fixed; /*Form stays in same location up and down page*/
+    bottom: .5vw; /*Sets slightly up from bottom of viewport*/
+    right: .5vw; /*Sets slightly to right of viewport*/
+}
+
+/*Form styling*/
+.form-container{
+    max-width: 49vw; /*Relative sizeing of form container*/
+    padding: 1vw; /*Adds padding between form pop-up and container*/
+    background-color: #edb53b;
+}
+
+/*Input fields*/
+.form-container input[type="text"]{
     width: 100%; /*Box cover full width of container*/
-    padding: 12px;
+    padding: .93vw;
     border: 2px solid rgb(195, 203, 203); /*Border/outline of the boxes*/
     border-radius: 5px; /*rounds the corners of the boxes*/
     box-sizing: border-box; /*Creates a box w/ a border around inputs*/
-    margin-top: 6px; /*Adds margin to top of box*/
-    margin-bottom: 16px; /*Adds margin to bottom of box*/
-    resize: vertical; /*Allows a vertical resize by user*/
+    margin: .6vw 0 .6vw 0; /*Adds space between input boxes and labels*/
     font-family: "Titillium Web", sans-serif; /*Font from
     fonts.google.com*/
     font-weight: bold;
 }
 
-input[type="text"]:hover{
+.form-container input[type="text"]:hover{
     box-shadow: 0 0 5px #710ca0; /*Creates hue/shadow on border when hovering over*/
 }
 
-/*Style and effects for Submit button*/
-input[type="submit"]{
+button{
+    font-family: "Audiowide", sans-serif; /*Font from fonts.google.com*/
+    letter-spacing: .3vw; /*Adds slight spacing between letters*/
+    font-size: 1.5vw; /*Relative sizing of text*/
+    font-weight: bold;
     background-color: #b53bed; /*Sets the color for the button itself*/
-    color: azure; /*Sets the color of the text in the button*/
-    padding: 8px 20px; /*Gives padding to all sides to give space between edge
-    of element  and input boxes*/
-    border-radius: 5px; /*Gives rounded edges*/
+    color: azure;
+    padding: 1.5vw; /*Adds padding to text in  button*/
     cursor: pointer;
-    display: block; /*Centers button in combo w/ margin left/right*/
-    margin-left: auto;
-    margin-right: auto;
-    font-family: "Audiowide", sans-serif; /*Font from fonts.google.com*/
+    width: 100%;
+    height: auto; /*Allows height to be resized depending on contact*/
 }
 
-input[type="submit"]:hover{
-    background-color: #710ca0; /*Changes shade of color when hovered over*/
-    transform: scale(1.2); /*Increases scale of button when hovered over*/
-    transition: transform 1.5s; /*Duration of time for transform to complete*/
+button:hover, .form-container .btn:hover{
+    background-color: #710ca0;
+    transition-duration: 1s; /*Transition of color change when hovered over*/
+    -webkit-transition-duration: 1s; /*For Safari browsers*/
 }
 
-/*Form element*/
-form{
-    border-radius: 5px; /*Rounds edges of element*/
-    padding: 8px; 
-    font-family: "Audiowide", sans-serif; /*Font from fonts.google.com*/
+.form-container .btn{
+    border-color: rgb(11, 11, 11);
+    margin-bottom: 1vh; /*Adds slight space between submit and close button*/
 }
-
 /*END OF CONTACT FORM*/

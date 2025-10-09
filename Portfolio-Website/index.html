@@ -15,7 +15,7 @@
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#github">GitHub</a>
-        <a href="#contact">Contact</a>
+        <a onclick="openForm()" ondblclick="closeForm()" class="contact">Contact</a>
     </div>
     <!--BREAKS-->
     <br>
@@ -45,6 +45,56 @@
                 Please, enjoy reviewing my handiwork, education, and experience.
             </p>
         </strong>
+    </div>
+    <!--SLIDESHOW-->
+    <div id="slideshow">
+        <div id="slideshow_backgorund">
+            <div id="slideshow_container">
+                <!--Slide 1/5-->
+                <div class="mySlides fade" style="display: none;">
+                    <img id="slideshow_static" class="slideshow_images" src="images/garrett_profile.jpg"
+                        style="height: 750px;">
+                </div>
+                <!--Slide 2/5-->
+                <div class="mySlides fade" style="display: none;">
+                    <img id="slideshow_static" class="slideshow_images" src="images/HTML_CSS_and_JavaScript.jpeg">
+                    <div class="text">Full-stack software dev,<br>
+                        proficient in:<br>
+                        HTML, CSS, & JavaScript.
+                    </div>
+                </div>
+                <!--Slide 3/5-->
+                <div class="mySlides fade" style="display: none;">
+                    <img id="slideshow_static" class="slideshow_images" src="images/SQL_and_Database(1).jpg">
+                    <div class="text">Knowledge of databases & SQL.</div>
+                </div>
+                <!--Slide 4/5-->
+                <div class="mySlides fade" style="display: none;">
+                    <img id="slideshow_static" class="slideshow_images" src="images/C_Sharp_and_Dot_NET.png">
+                    <div class="text">Primary focus in C#/.NET.</div>
+                </div>
+                <!--Slide 5/5-->
+                <div class="mySlides fade" style="display: none;">
+                    <img id="slideshow_static" class="slideshow_images" src="images/contact_us.jpg">
+                    <div class="text">
+                        <a class="white-text contact" onclick="openForm()">Contact me today!</a>
+                    </div>
+                </div>
+                <!--Prev/next buttons-->
+                <a class="Prev" onclick="plusSlides(-1)">&#8249;</a>
+                <a class="Next" onclick="plusSlides(1)">&#8250;</a>
+            </div>
+            <br>
+            <!--Add space between image and dots-->
+            <!--Slideshow dots-->
+            <div style="text-align: center;">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot active" onclick="currentSlide(5)"></span>
+            </div>
+        </div>
     </div>
     <!--ABOUT-->
     <div class="row" id="about">
@@ -89,28 +139,29 @@
             </p>
             <p class="center">
                 <a href="https://github.com/boss-tweed/HTML-AND-CSS-PROJECTS.git" target="_blank">Garrett Fisher
-                (boss-tweed) Github</a>
+                    (boss-tweed) Github</a>
             </p>
         </div>
     </div>
     <!--CONTACT-->
-    <div class="row" id="contact">
-        <!--LEFT COLUMN-->
-        <div class="column_1 column_tall">
-            <h1>Contact</h1>
-            <form>
-                <label>Name:</label>
-                <input type="text" placeholder="Please enter you name here">
-                <label>Email:</label>
-                <input type="text" id="email" name="email" placeholder="Please enter you email here">
-                <label>Message:</label>
-                <input type="text" id="message" name="message" placeholder="Please write your message here">
-                <input type="submit" value="SUBMIT">
+    <div>
+        <button onclick="openForm()" class="pop_up_button">CONTACT</button>
+        <div class="form-popup" id="myForm" ondblclick="closeForm()" style="display: block;">
+            <form action="https://formspree.io/f/xovnvglb" method="post" class="form-container">
+                <!--This link above is a free service to send our contact form to our email address chosen-->
+                <h1>Contact</h1>
+                <label for="name">Name:</label>
+                <input type="text" name="name" placeholder="Please enter you name here" required>
+                <label for="phone">Phone:</label>
+                <input type="text" name="phone" placeholder="Enter your phone number here">
+                <label for="email">Email:</label>
+                <input type="text" name="email" placeholder="Please enter you email here" required>
+                <label for="message">Message:</label>
+                <input type="text" name="message" placeholder="Please type your message here">
+                <button type="submit" class="btn">SUBMIT</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">CLOSE</button>
+
             </form>
-        </div>
-        <!--RIGHT COLUMN-->
-        <div class="column_2">
-            <img src="images/contact_us.jpg" alt="Here's my card, contact us">
         </div>
     </div>
     <!--FOOTER-->
@@ -124,6 +175,7 @@
         <br>
         <p></p>
     </footer>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
